@@ -7,10 +7,11 @@ export const schema = gql`
   }
 
   type Events {
+    code: String!
     events: [Event!]
   }
 
   type Query {
-    getEvents(start: String!, end: String!): Events! @skipAuth
+    getEvents(start: String!, end: String!, code: String!): Events! @skipAuth
   }
 `

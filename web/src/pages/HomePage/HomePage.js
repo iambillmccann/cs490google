@@ -19,13 +19,18 @@ const HomePage = () => {
     <>
       <MetaTags title="Home" description="Home page" />
 
-      <h1>HomePage</h1>
+      <h1>Google API Demo</h1>
+      <br />
       <button onClick={() => setFirstTime(false)}>Authorize</button>
       {firstTime ? <div></div> : <AuthorizeCell></AuthorizeCell>}
       <br />
-      <button onClick={() => setShowEvents(true)}>appointments</button>
+      <button onClick={() => setShowEvents(true)}>Appointments</button>
       {showEvents ? (
-        <AppointmentsCell start={start} end={end}></AppointmentsCell>
+        <AppointmentsCell
+          start={start}
+          end={end}
+          code={code}
+        ></AppointmentsCell>
       ) : (
         <div></div>
       )}
