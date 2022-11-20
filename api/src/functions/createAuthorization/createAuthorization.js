@@ -18,6 +18,10 @@ import { logger } from 'src/lib/logger'
  */
 
 export const handler = async (event, context) => {
+  logger.info('Invoked createAuthorization function')
+  console.log(event)
+  console.log(context)
+
   const { google } = require('googleapis')
 
   /**

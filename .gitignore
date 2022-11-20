@@ -21,4 +21,3 @@ api/src/lib/generateGraphiQLHeader.*
 !.yarn/versions
 *.cjs
 *.cjs
-*.cjs
