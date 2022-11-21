@@ -4,6 +4,7 @@ import * as theme from 'config/chakra.config'
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web'
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
 
+import AuthURLProvider from 'src/contexts/AuthURL'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 import Routes from 'src/Routes'
 
@@ -16,9 +17,11 @@ const App = () => (
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
       <ColorModeScript />
       <ChakraProvider theme={extendedTheme}>
-        <RedwoodApolloProvider>
-          <Routes />
-        </RedwoodApolloProvider>
+        <AuthURLProvider>
+          <RedwoodApolloProvider>
+            <Routes />
+          </RedwoodApolloProvider>
+        </AuthURLProvider>
       </ChakraProvider>
     </RedwoodProvider>
   </FatalErrorBoundary>
