@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-// import { Link, routes } from '@redwoodjs/router'
+import { Button } from '@chakra-ui/react'
+
 import { MetaTags } from '@redwoodjs/web'
 
 import AppointmentsCell from 'src/components/AppointmentsCell'
@@ -24,7 +25,7 @@ const HomePage = () => {
 
       <h1>Google API Demo</h1>
       <br />
-      <button onClick={() => setShowEvents(true)}>Appointments</button>
+      <Button onClick={() => setShowEvents(true)}>Appointments</Button>
       {showEvents ? (
         <AppointmentsCell
           start={start}
