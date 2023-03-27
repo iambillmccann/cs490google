@@ -1,6 +1,10 @@
 # README
 
-Welcome to [RedwoodJS](https://redwoodjs.com)!
+## Using Google's Oauth for the Calendar API ##
+
+To do. Describe the application here.
+
+## Welcome to [RedwoodJS](https://redwoodjs.com)! ##
 
 > **Prerequisites**
 >
