@@ -38,7 +38,7 @@ export const handler = async (event, context) => {
   // Access scopes for calendar events.
   const scopes = ['https://www.googleapis.com/auth/calendar.events']
 
-  // Generate a url that asks permissions for the Drive activity scope
+  // Generate a url that asks permissions for the calendar scope
   const authorizationUrl = oauth2Client.generateAuthUrl({
     // 'online' (default) or 'offline' (gets refresh_token)
     access_type: 'offline',
