@@ -3,15 +3,37 @@ export const getEvents = async ({ start, end, code }) => {
   const oauth2Client = new google.auth.OAuth2(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET,
-    process.env.REDIRECT_URL
+    //process.env.REDIRECT_URL
+    'http://localhost:8910'
   )
 
+  console.log('here is the code')
+  console.log(code)
   // ToDo implement error handling when no code is passed
   let { tokens } = await oauth2Client.getToken(code)
-  console.log({ tokens })
   oauth2Client.setCredentials(tokens)
-
   const calendar = google.calendar({ version: 'v3', auth: oauth2Client })
+  let userCredential = tokens
+
+  oauth2Client.on('tokens', (tokens) => {
+    if (tokens.refresh_token) {
+      userCredential = tokens
+    }
+  })
+
+  let dist = tokens.expiry_date - Date.now() // distance in milliseconds from the expiry date
+  let timerOne = setInterval(async () => {
+    const res = await calendar.events.list({
+      calendarId: 'primary',
+      timeMin: start,
+      timeMax: end,
+      maxResults: 100,
+      singleEvents: true,
+      orderBy: 'startTime',
+    })
+  }, dist - 10000) // 10 seconds before expiry, make an API call to refresh the access token - it will automatically update within the oauth client
+
+  console.log({ tokens })
   const res = await calendar.events.list({
     calendarId: 'primary',
     timeMin: start,

@@ -32,7 +32,8 @@ export const handler = async (event, context) => {
   const oauth2Client = new google.auth.OAuth2(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET,
-    process.env.REDIRECT_URL
+    //process.env.REDIRECT_URL
+    'http://localhost:8910'
   )
 
   // Access scopes for calendar events.
@@ -60,37 +61,5 @@ export const handler = async (event, context) => {
     body: JSON.stringify({
       data: authorizationUrl,
     }),
-  }
-}
-
-export const oauthCallback = async (event, context) => {
-  logger.info('Invoked oauthCallback function')
-  console.log(event)
-  console.log(context)
-
-  const { google } = require('googleapis')
-
-  const oauth2Client = new google.auth.OAuth2(
-    process.env.CLIENT_ID,
-    process.env.CLIENT_SECRET,
-    process.env.REDIRECT_URL
-  )
-
-  // Extract the authorization code from the query parameters
-  const { queryStringParameters } = event
-  const { code } = queryStringParameters.code
-
-  // Exchange the authorization code for access and refresh tokens
-  const { tokens } = await oauth2Client.getToken(code)
-  console.log(tokens)
-  // Now you have the access and refresh tokens
-  const accessToken = tokens.access_token
-  const refreshToken = tokens.refresh_token
-
-  // Continue with your logic for storing and utilizing the tokens
-
-  return {
-    statusCode: 200,
-    body: 'Authorization code received and tokens retrieved successfully.',
   }
 }
