@@ -7,9 +7,6 @@ export const getEvents = async ({ start, end, code }) => {
     'http://localhost:8910'
   )
 
-  console.log('here is the code')
-  console.log(code)
-  // ToDo implement error handling when no code is passed
   let { tokens } = await oauth2Client.getToken(code)
   oauth2Client.setCredentials(tokens)
   const calendar = google.calendar({ version: 'v3', auth: oauth2Client })
