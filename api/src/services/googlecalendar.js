@@ -25,8 +25,8 @@ export const getEvents = async ({ start, end, code }) => {
   let timerOne = setInterval(async () => {
     const res = await calendar.events.list({
       calendarId: 'primary',
-      timeMin: start,
-      timeMax: end,
+      timeMin: '2023-05-01T12:00:00Z',
+      timeMax: '2023-05-01T12:00:01Z', //max time only one second after begin time to make a dummy call
       maxResults: 100,
       singleEvents: true,
       orderBy: 'startTime',
