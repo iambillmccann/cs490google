@@ -36,7 +36,10 @@ export const handler = async (event, context) => {
   )
 
   // Access scopes for calendar events.
-  const scopes = ['https://www.googleapis.com/auth/calendar.events']
+  const scopes = [
+    'https://www.googleapis.com/auth/calendar',
+    'https://www.googleapis.com/auth/calendar.events',
+  ]
 
   // Generate a url that asks permissions for the calendar scope
   const authorizationUrl = oauth2Client.generateAuthUrl({
