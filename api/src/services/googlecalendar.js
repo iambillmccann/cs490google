@@ -6,9 +6,6 @@ export const getEvents = async ({ start, end, code }) => {
     process.env.YOUR_REDIRECT_URL
   )
 
-  console.log('here is the code')
-  console.log(code)
-  // ToDo implement error handling when no code is passed
   let { tokens } = await oauth2Client.getToken(code)
   oauth2Client.setCredentials(tokens)
   const calendar = google.calendar({ version: 'v3', auth: oauth2Client })
@@ -24,8 +21,8 @@ export const getEvents = async ({ start, end, code }) => {
   let timerOne = setInterval(async () => {
     const res = await calendar.events.list({
       calendarId: 'primary',
-      timeMin: start,
-      timeMax: end,
+      timeMin: '2023-05-01T12:00:00Z',
+      timeMax: '2023-05-01T12:00:01Z', //max time only one second after begin time to make a dummy call
       maxResults: 100,
       singleEvents: true,
       orderBy: 'startTime',
