@@ -1,10 +1,9 @@
 export const getEvents = async ({ start, end, code }) => {
   const { google } = require('googleapis')
   const oauth2Client = new google.auth.OAuth2(
-    process.env.CLIENT_ID,
-    process.env.CLIENT_SECRET,
-    //process.env.REDIRECT_URL
-    'http://localhost:8910'
+    process.env.YOUR_CLIENT_ID,
+    process.env.YOUR_CLIENT_SECRET,
+    process.env.YOUR_REDIRECT_URL
   )
 
   console.log('here is the code')
